@@ -1,16 +1,26 @@
+/* Import the custom fonts so all visitors can see them */
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Regular.woff2') format('woff2'); /* Change the filename to match yours exactly! */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Body & Typography Defaults */
 body {
   margin: 0;
   color: #172033;
   background-color: #ffffff;
-  font-family: "Adobe Caslon Pro", "Adobe Caslon";
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font-family: "Adobe Caslon Pro", "Adobe Caslon"; */
   /* , Caslon, Georgia, serif */
 }
 
 /* UI Elements & Headings use Helvetica Neue */
 h1, h2, h3, h4, h5, h6, 
 button, label, input, textarea, select, nav, .font-sans {
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue ", Helvetica, Arial, sans-serif;
   /* Helvetica, Arial, sans-serif */
 }
 
