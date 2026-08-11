@@ -1,0 +1,141 @@
+/* Body & Typography Defaults */
+body {
+  margin: 0;
+  color: #172033;
+  background-color: #ffffff;
+  font-family: "Adobe Caslon Pro", "Adobe Caslon";
+  /* , Caslon, Georgia, serif */
+}
+
+/* UI Elements & Headings use Helvetica Neue */
+h1, h2, h3, h4, h5, h6, 
+button, label, input, textarea, select, nav, .font-sans {
+  font-family: "Helvetica Neue";
+  /* Helvetica, Arial, sans-serif */
+}
+
+button, input, textarea, select {
+  letter-spacing: 0.01em;
+}
+
+p, li {
+  line-height: 1.6;
+}
+
+/* Light Theme Styling */
+.theme-light {
+  background-color: #ffffff;
+  color: #172033;
+}
+
+/* In light mode, blue replaces the yellow accent and surfaces stay white. */
+/* .theme-light .bg-\[\#EBB700\] {
+  background-color: #00338D !important;
+} */
+
+/* .theme-light .text-\[\#EBB700\] {
+  color: #00338D !important;
+} */
+
+.theme-light .border-\[\#EBB700\] {
+  border-color: #00338D !important;
+}
+
+.theme-light .bg-\[\#EBB700\].text-\[\#172033\] {
+  color: #ffffff !important;
+}
+
+.theme-light .bg-black {
+  background-color: #ffffff !important;
+}
+
+.theme-light .bg-black.text-white,
+.theme-light footer.text-white {
+  color: #172033 !important;
+}
+
+.theme-light footer .text-gray-400,
+.theme-light footer .text-gray-500 {
+  color: #55565A !important;
+}
+
+.theme-light .text-gray-100,
+.theme-light .text-gray-200,
+.theme-light .text-gray-300 {
+    color: #172033 !important;
+}
+
+/* Dark Theme (Gray / Charcoal Palette Combination) */
+.theme-dark {
+  background-color: #121212 !important;
+  color: #F6F8FB !important;
+}
+
+/* Header & Navigation in Dark Mode */
+.theme-dark nav,
+.theme-dark header,
+.theme-dark .bg-white {
+  background-color: #1E1E1E !important;
+}
+
+.theme-dark nav {
+  border-bottom-color: #EBB700 !important;
+}
+
+/* Dark Mode Container & Card Backgrounds */
+.theme-dark .bg-gray-50,
+.theme-dark .bg-slate-50,
+.theme-dark .bg-\[\#F6F8FB\],
+.theme-dark .bg-surfacesubtle {
+  background-color: #181818 !important;
+}
+
+.theme-dark .bg-blue-50,
+.theme-dark .bg-blue-50\/50,
+.theme-dark .bg-gray-100,
+.theme-dark .bg-surfacetint {
+  background-color: #262626 !important;
+}
+
+/* Hero & Footer background override in Dark Mode */
+.theme-dark .bg-black {
+  background-color: #181F2B !important; /* Rich Dark Charcoal-Slate */
+}
+
+/* Text Overrides for Dark Mode */
+.theme-dark .text-black,
+.theme-dark .text-\[\#172033\],
+.theme-dark .text-gray-900,
+.theme-dark .text-gray-800,
+.theme-dark .text-gray-700,
+.theme-dark .text-gray-600 {
+  color: #F6F8FB !important;
+}
+
+.theme-dark .text-gray-500,
+.theme-dark .text-\[\#55565A\] {
+  color: #B3B2B1 !important; /* Cool Gray 5 fallback */
+}
+
+/* Border Overrides for Dark Mode */
+.theme-dark .border-gray-100,
+.theme-dark .border-gray-200,
+.theme-dark .border-gray-300,
+.theme-dark .border-\[\#B3B2B1\],
+.theme-dark .border-\[\#55565A\] {
+  border-color: #383838 !important;
+}
+
+/* Form Controls in Dark Mode */
+.theme-dark input,
+.theme-dark textarea,
+.theme-dark select {
+  background-color: #222222 !important;
+  color: #FFFFFF !important;
+  border-color: #55565A !important;
+}
+
+.theme-dark input::placeholder,
+.theme-dark textarea::placeholder {
+  color: #888888 !important;
+}
