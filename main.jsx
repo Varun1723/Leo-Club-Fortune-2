@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { supabase } from './supabaseClient'; // Make sure you create this file!
 import {
   Menu, X, FolderHeart, Mail, CheckCircle2, ChevronRight,
   Phone, Send, MapPin, ArrowRight, Sun, Moon, ShieldCheck
 } from 'lucide-react';
-import './style.css'; // Assuming you still have this for tailwind or custom styles
+import './style.css'; 
 
 const BRAND = {
   blue: '#00338D',
@@ -306,10 +307,40 @@ const ProjectsView = ({ isDarkTheme }) => {
 
 const ContactView = ({ isDarkTheme }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    
+    const form = event.target;
+
+    // Package the form data matching our Supabase table structure
+    const inquiryData = {
+      first_name: form.firstName.value,
+      middle_name: form.middleName.value || null,
+      last_name: form.lastName.value,
+      dob: form.dob.value,
+      gender: form.gender.value,
+      email: form.email.value,
+      occupation: form.occupation.value,
+      organization: form.organization.value,
+      message: form.message.value || null,
+    };
+
+    // Push to Supabase
+    const { error } = await supabase
+      .from('contact_inquiries')
+      .insert([inquiryData]);
+
+    setIsSubmitting(false);
+
+    if (error) {
+      console.error("Error saving data:", error);
+      alert("There was an error submitting your form. Please try again.");
+    } else {
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -370,15 +401,15 @@ const ContactView = ({ isDarkTheme }) => {
               <div className="grid sm:grid-cols-3 gap-5">
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>First Name *</label>
-                  <input required type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="First Name" />
+                  <input required name="firstName" type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="First Name" />
                 </div>
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Middle Name</label>
-                  <input type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Middle Name" />
+                  <input name="middleName" type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Middle Name" />
                 </div>
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Last Name *</label>
-                  <input required type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Last Name" />
+                  <input required name="lastName" type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Last Name" />
                 </div>
               </div>
 
@@ -386,11 +417,11 @@ const ContactView = ({ isDarkTheme }) => {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Date of Birth *</label>
-                  <input required type="date" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} />
+                  <input required name="dob" type="date" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} />
                 </div>
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Gender *</label>
-                  <select required defaultValue="" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}>
+                  <select required name="gender" defaultValue="" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`}>
                     <option value="" disabled>Select Gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -403,29 +434,29 @@ const ContactView = ({ isDarkTheme }) => {
               {/* Email */}
               <div>
                 <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Email ID *</label>
-                <input required type="email" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="name@example.com" />
+                <input required name="email" type="email" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="name@example.com" />
               </div>
 
               {/* Professional/Educational Details */}
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Occupation *</label>
-                  <input required type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Student, Engineer, etc." />
+                  <input required name="occupation" type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Student, Engineer, etc." />
                 </div>
                 <div>
                   <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Organisation / College *</label>
-                  <input required type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Institute Name" />
+                  <input required name="organization" type="text" className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Institute Name" />
                 </div>
               </div>
 
               {/* Message */}
               <div>
                 <label className={`block text-sm font-bold mb-2 ${isDarkTheme ? 'text-gray-200' : 'text-[#172033]'}`}>Message / Inquiry</label>
-                <textarea rows={4} className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Tell us how we can assist you..." />
+                <textarea name="message" rows={4} className={`w-full border px-4 py-3 outline-none transition-all duration-300 focus:-translate-y-0.5 focus:shadow-md focus:ring-2 focus:ring-[#EBB700] ${isDarkTheme ? 'bg-[#2A2A2A] border-gray-700 text-white' : 'bg-white border-gray-300 text-black'}`} placeholder="Tell us how we can assist you..." />
               </div>
 
-              <button type="submit" className="w-full sm:w-auto bg-[#EBB700] text-[#172033] px-7 py-3.5 font-bold hover:bg-yellow-500 transition-colors inline-flex items-center justify-center gap-2 shadow-md">
-                Send Message <Send size={18} />
+              <button disabled={isSubmitting} type="submit" className="w-full sm:w-auto bg-[#EBB700] text-[#172033] px-7 py-3.5 font-bold hover:bg-yellow-500 transition-colors inline-flex items-center justify-center gap-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed">
+                {isSubmitting ? "Sending..." : <>Send Message <Send size={18} /></>}
               </button>
             </form>
           )}
@@ -434,7 +465,6 @@ const ContactView = ({ isDarkTheme }) => {
     </div>
   );
 };
-
 
 /* =========================================================================
    MAIN APP RENDER
@@ -488,7 +518,6 @@ function LeoClubApp() {
   );
 }
 
-// Render root
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
