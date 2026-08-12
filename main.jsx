@@ -18,7 +18,7 @@ const ASSETS = {
   lionsEmblem: "/icons/lions-emblem.png",
   leoLogo: "/icons/leo-logo.png",
   bgMain: "/icons/bg-main.png",
-  ourImpact: "/public/photos/Picture1.png",
+  ourImpact: "/photos/Picture1.png",
   becomeLeo: "/icons/become-leo-bg.png",
   causes: {
     childhoodCancer: "/photos/Picture4.png",
