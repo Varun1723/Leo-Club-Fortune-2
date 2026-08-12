@@ -19,17 +19,17 @@ const ASSETS = {
   lionsEmblem: "/icons/lions-emblem.png",
   leoLogo: "/icons/leo-logo.png",
   bgMain: "/icons/bg-main.png",
-  ourImpact: "/photos/Picture1.png",
+  ourImpact: "/newphotos/facts.png",
   becomeLeo: "/icons/become-leo-bg.png",
   causes: {
-    childhoodCancer: "/photos/Picture4.png",
-    diabetes: "/photos/Picture5.png",
-    disasterRelief: "/photos/Picture6.png",
-    environment: "/photos/Picture7.png",
-    hunger: "/photos/Picture8.png",
-    humanitarian: "/photos/Picture9.png",
-    vision: "/photos/Picture10.png",
-    youth: "/photos/Picture11.png",
+    childhoodCancer: "/newphotos/childhoodcancer.jpeg",
+    diabetes: "/newphotos/diabetes.jpeg",
+    disasterRelief: "/newphotos/disasterrelief.jpeg",
+    environment: "/newphotos/environment.jpeg",
+    hunger: "/newphotos/hunger.jpeg",
+    humanitarian: "/newphotos/humanitarian.jpeg",
+    vision: "/newphotos/vision.jpeg",
+    youth: "/newphotos/youth.jpeg",
   },
 };
 
@@ -43,7 +43,7 @@ const NavBar = ({ currentView, isMobileMenuOpen, setIsMobileMenuOpen }) => (
       <div className="flex justify-between h-20">
         <a href="#home" className="flex items-center gap-4 cursor-pointer">
           <div className="flex items-center gap-3 py-2" aria-label="Lions International and Leo Club logos">
-            <img src={ASSETS.lionsEmblem} alt="Lions International emblem" className="w-11 h-11 object-contain" />
+            {/* <img src={ASSETS.lionsEmblem} alt="Lions International emblem" className="w-11 h-11 object-contain" /> */}
             <img src={ASSETS.leoLogo} alt="Leo Club emblem" className="w-11 h-11 object-contain" />
           </div>
           <div className="hidden sm:block border-l border-white/30 pl-4">
@@ -151,9 +151,9 @@ const HomeView = () => (
     <div className="relative overflow-hidden hero-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10 animate-slide-up">
         <div className="max-w-3xl">
-          <span className="text-[#EBB700] font-bold tracking-widest uppercase text-sm mb-4 block flex items-center gap-2">
+          {/* <span className="text-[#EBB700] font-bold tracking-widest uppercase text-sm mb-4 block flex items-center gap-2">
             <ShieldCheck size={18} /> Lions Clubs International
-          </span>
+          </span> */}
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white">
             Leo Club<br />
             <span className="text-[#EBB700]">Chandigarh Fortune</span>
@@ -491,7 +491,7 @@ const ContactView = () => {
                   <input required name="organization" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Institute Name" />
                 </div>
               </div>
-            
+
               <div>
                 <label className="block text-sm font-bold mb-2 text-white/90">Message / Inquiry</label>
                 <textarea name="message" rows={4} className="form-input w-full px-4 py-3 outline-none" placeholder="Tell us how we can assist you..." />
