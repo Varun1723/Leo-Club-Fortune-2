@@ -21,14 +21,14 @@ const ASSETS = {
   ourImpact: "/public/photos/Picture1.png",
   becomeLeo: "/icons/become-leo-bg.png",
   causes: {
-    childhoodCancer: "/public/photos/Picture4.png",
-    diabetes: "/public/photos/Picture5.png",
-    disasterRelief: "/public/photos/Picture6.png",
-    environment: "/public/photos/Picture7.png",
-    hunger: "/public/photos/Picture8.png",
-    humanitarian: "/public/photos/Picture9.png",
-    vision: "/public/photos/Picture10.png",
-    youth: "/public/photos/Picture11.png",
+    childhoodCancer: "/photos/Picture4.png",
+    diabetes: "/photos/Picture5.png",
+    disasterRelief: "/photos/Picture6.png",
+    environment: "/photos/Picture7.png",
+    hunger: "/photos/Picture8.png",
+    humanitarian: "/photos/Picture9.png",
+    vision: "/photos/Picture10.png",
+    youth: "/photos/Picture11.png",
   },
 };
 
