@@ -5,6 +5,7 @@ import {
   Phone, Send, MapPin, ArrowRight, ShieldCheck,
   Award, Briefcase, Users, Globe, Heart, BookOpen, HandHelping
 } from 'lucide-react';
+import { supabase } from './supabaseClient';
 import './style.css';
 
 const BRAND = {
