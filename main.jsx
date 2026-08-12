@@ -109,7 +109,7 @@ const Footer = () => (
         </div>
 
         <div>
-          <h3 className="font-bold text-lg mb-4 text-[#EBB700]">Organization</h3>
+          <h3 className="font-bold text-lg mb-4 text-[#EBB700]">Organisation</h3>
           <ul className="space-y-3 text-sm text-white/60">
             <li><a href="#home" className="transition-colors hover:text-white">About Us</a></li>
             <li><a href="#projects" className="transition-colors hover:text-white">Membership & Benefits</a></li>
@@ -411,7 +411,7 @@ const ContactView = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 animate-slide-up">
           <p className="font-sans text-[#EBB700] font-bold tracking-[0.18em] uppercase text-sm mb-4">Get in touch</p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 text-white">Let's serve together.</h1>
-          <p className="text-lg max-w-2xl text-white/80">Reach out for general inquiries, club information, or service partnerships. Fill out the form below and we'll get back to you.</p>
+          <p className="text-lg max-w-2xl text-white/80">Reach out for membership applications, club information, service partnerships, or general inquiries. Fill out the form below and we'll get back to you.</p>
         </div>
       </section>
 
@@ -491,7 +491,7 @@ const ContactView = () => {
                   <input required name="organization" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Institute Name" />
                 </div>
               </div>
-
+            
               <div>
                 <label className="block text-sm font-bold mb-2 text-white/90">Message / Inquiry</label>
                 <textarea name="message" rows={4} className="form-input w-full px-4 py-3 outline-none" placeholder="Tell us how we can assist you..." />
