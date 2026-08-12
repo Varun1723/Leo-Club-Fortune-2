@@ -356,15 +356,44 @@ const ProjectsView = () => {
 
 const ContactView = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    
+    const form = event.target;
+
+    // Package the form data matching our Supabase table structure
+    const inquiryData = {
+      first_name: form.firstName.value,
+      middle_name: form.middleName.value || null,
+      last_name: form.lastName.value,
+      dob: form.dob.value,
+      gender: form.gender.value,
+      email: form.email.value,
+      occupation: form.occupation.value,
+      organization: form.organization.value,
+      message: form.message.value || null,
+    };
+
+    // Push to Supabase
+    const { error } = await supabase
+      .from('contact_inquiries')
+      .insert([inquiryData]);
+
+    setIsSubmitting(false);
+
+    if (error) {
+      console.error("Error saving data:", error);
+      alert("There was an error submitting your form. Please try again.");
+    } else {
+      setSubmitted(true); // Only show success screen if Supabase says OK!
+    }
   };
 
   return (
     <div className="min-h-screen">
-
       <style>{`
         @keyframes slideUpFade {
           from { opacity: 0; transform: translateY(30px); }
@@ -398,9 +427,7 @@ const ContactView = () => {
           </div>
         </aside>
 
-        <div
-          className="contact-form-card p-7 md:p-10 transition-all duration-300 animate-slide-up delay-200"
-        >
+        <div className="contact-form-card p-7 md:p-10 transition-all duration-300 animate-slide-up delay-200">
           {submitted ? (
             <div className="py-12 text-center animate-slide-up">
               <CheckCircle2 className="mx-auto text-[#EBB700] mb-5" size={52} />
@@ -415,31 +442,30 @@ const ContactView = () => {
                 <p className="mt-2 text-white/60">Fields marked with an asterisk are required.</p>
               </div>
 
-              {/* Name Row */}
+              {/* Added 'name' attributes to all inputs below */}
               <div className="grid sm:grid-cols-3 gap-5">
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">First Name *</label>
-                  <input required type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="First Name" />
+                  <input required name="firstName" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="First Name" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Middle Name</label>
-                  <input type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Middle Name" />
+                  <input name="middleName" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Middle Name" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Last Name *</label>
-                  <input required type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Last Name" />
+                  <input required name="lastName" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Last Name" />
                 </div>
               </div>
 
-              {/* Personal Details Row */}
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Date of Birth *</label>
-                  <input required type="date" className="form-input w-full px-4 py-3 outline-none" />
+                  <input required name="dob" type="date" className="form-input w-full px-4 py-3 outline-none" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Gender *</label>
-                  <select required defaultValue="" className="form-input w-full px-4 py-3 outline-none">
+                  <select required name="gender" defaultValue="" className="form-input w-full px-4 py-3 outline-none">
                     <option value="" disabled>Select Gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -449,32 +475,29 @@ const ContactView = () => {
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-sm font-bold mb-2 text-white/90">Email ID *</label>
-                <input required type="email" className="form-input w-full px-4 py-3 outline-none" placeholder="name@example.com" />
+                <input required name="email" type="email" className="form-input w-full px-4 py-3 outline-none" placeholder="name@example.com" />
               </div>
 
-              {/* Professional/Educational Details */}
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Occupation *</label>
-                  <input required type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Student, Engineer, etc." />
+                  <input required name="occupation" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Student, Engineer, etc." />
                 </div>
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">Organisation / Institute *</label>
-                  <input required type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Institute Name" />
+                  <input required name="organization" type="text" className="form-input w-full px-4 py-3 outline-none" placeholder="Institute Name" />
                 </div>
               </div>
 
-              {/* Message */}
               <div>
                 <label className="block text-sm font-bold mb-2 text-white/90">Message / Inquiry</label>
-                <textarea rows={4} className="form-input w-full px-4 py-3 outline-none" placeholder="Tell us how we can assist you..." />
+                <textarea name="message" rows={4} className="form-input w-full px-4 py-3 outline-none" placeholder="Tell us how we can assist you..." />
               </div>
 
-              <button type="submit" className="w-full sm:w-auto bg-[#EBB700] text-[#172033] px-7 py-3.5 font-bold hover:bg-yellow-400 transition-colors inline-flex items-center justify-center gap-2 shadow-md">
-                Send Message <Send size={18} />
+              <button disabled={isSubmitting} type="submit" className="w-full sm:w-auto bg-[#EBB700] text-[#172033] px-7 py-3.5 font-bold hover:bg-yellow-400 transition-colors inline-flex items-center justify-center gap-2 shadow-md disabled:opacity-70 disabled:cursor-not-allowed">
+                {isSubmitting ? "Sending..." : <>Send Message <Send size={18} /></>}
               </button>
             </form>
           )}
