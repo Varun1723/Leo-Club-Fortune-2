@@ -1,27 +1,46 @@
 /* Import the custom fonts so all visitors can see them */
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url('/fonts/HelveticaNeue-Regular.woff2') format('woff2'); /* Change the filename to match yours exactly! */
+  src: url('/fonts/HelveticaNeueRoman.otf') format('opentype'); 
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-/* Body & Typography Defaults */
-body {
-  margin: 0;
-  color: #172033;
-  background-color: #ffffff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* font-family: "Adobe Caslon Pro", "Adobe Caslon"; */
-  /* , Caslon, Georgia, serif */
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeueBold.otf') format('opentype'); 
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* UI Elements & Headings use Helvetica Neue */
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeueMedium.otf') format('opentype'); 
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeueLight.otf') format('opentype'); 
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body & Typography - All Helvetica Neue */
+body {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6, 
-button, label, input, textarea, select, nav, .font-sans {
-  font-family: "Helvetica Neue ", Helvetica, Arial, sans-serif;
-  /* Helvetica, Arial, sans-serif */
+button, label, input, textarea, select, nav, p, li, span, a, div {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 button, input, textarea, select {
@@ -32,120 +51,157 @@ p, li {
   line-height: 1.6;
 }
 
-/* Light Theme Styling */
-.theme-light {
-  background-color: #ffffff;
-  color: #172033;
+/* ============================================
+   MAIN BACKGROUND - Purple/Blue gradient image
+   ============================================ */
+
+.app-wrapper {
+  background-image: url('/icons/bg-main.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #2a1b5e; /* fallback */
 }
 
-/* In light mode, blue replaces the yellow accent and surfaces stay white. */
-/* .theme-light .bg-\[\#EBB700\] {
-  background-color: #00338D !important;
-} */
+/* ============================================
+   NAV BAR
+   ============================================ */
 
-/* .theme-light .text-\[\#EBB700\] {
-  color: #00338D !important;
-} */
-
-.theme-light .border-\[\#EBB700\] {
-  border-color: #00338D !important;
+.nav-bar {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 3px solid #EBB700;
 }
 
-.theme-light .bg-\[\#EBB700\].text-\[\#172033\] {
-  color: #ffffff !important;
+.mobile-menu-dropdown {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.theme-light .bg-black {
-  background-color: #ffffff !important;
+/* ============================================
+   HERO SECTIONS
+   ============================================ */
+
+.hero-section {
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 4px solid #EBB700;
 }
 
-.theme-light .bg-black.text-white,
-.theme-light footer.text-white {
-  color: #172033 !important;
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+
+.content-section {
+  /* transparent over the main bg */
 }
 
-.theme-light footer .text-gray-400,
-.theme-light footer .text-gray-500 {
-  color: #55565A !important;
+/* ============================================
+   GLASS CARDS
+   ============================================ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.theme-light .text-gray-100,
-.theme-light .text-gray-200,
-.theme-light .text-gray-300 {
-    color: #172033 !important;
+/* ============================================
+   CAUSE CARDS
+   ============================================ */
+
+.cause-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Dark Theme (Gray / Charcoal Palette Combination) */
-.theme-dark {
-  background-color: #121212 !important;
-  color: #F6F8FB !important;
+.cause-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Header & Navigation in Dark Mode */
-.theme-dark nav,
-.theme-dark header,
-.theme-dark .bg-white {
-  background-color: #1E1E1E !important;
+/* ============================================
+   BENEFIT CARDS
+   ============================================ */
+
+.benefit-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.theme-dark nav {
-  border-bottom-color: #EBB700 !important;
+.benefit-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Dark Mode Container & Card Backgrounds */
-.theme-dark .bg-gray-50,
-.theme-dark .bg-slate-50,
-.theme-dark .bg-\[\#F6F8FB\],
-.theme-dark .bg-surfacesubtle {
-  background-color: #181818 !important;
+/* ============================================
+   BECOME A LEO / MAKE THE MOST CTA CARD
+   ============================================ */
+
+.become-leo-card {
+  background-image: url('/icons/become-leo-bg.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.theme-dark .bg-blue-50,
-.theme-dark .bg-blue-50\/50,
-.theme-dark .bg-gray-100,
-.theme-dark .bg-surfacetint {
-  background-color: #262626 !important;
+.become-leo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: inherit;
 }
 
-/* Hero & Footer background override in Dark Mode */
-.theme-dark .bg-black {
-  background-color: #181F2B !important; /* Rich Dark Charcoal-Slate */
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer-section {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 6px solid #EBB700;
 }
 
-/* Text Overrides for Dark Mode */
-.theme-dark .text-black,
-.theme-dark .text-\[\#172033\],
-.theme-dark .text-gray-900,
-.theme-dark .text-gray-800,
-.theme-dark .text-gray-700,
-.theme-dark .text-gray-600 {
-  color: #F6F8FB !important;
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 8px 8px 0 #EBB700;
 }
 
-.theme-dark .text-gray-500,
-.theme-dark .text-\[\#55565A\] {
-  color: #B3B2B1 !important; /* Cool Gray 5 fallback */
+.form-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-/* Border Overrides for Dark Mode */
-.theme-dark .border-gray-100,
-.theme-dark .border-gray-200,
-.theme-dark .border-gray-300,
-.theme-dark .border-\[\#B3B2B1\],
-.theme-dark .border-\[\#55565A\] {
-  border-color: #383838 !important;
+.form-input:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  ring: 2px;
+  ring-color: #EBB700;
+  border-color: #EBB700;
 }
 
-/* Form Controls in Dark Mode */
-.theme-dark input,
-.theme-dark textarea,
-.theme-dark select {
-  background-color: #222222 !important;
-  color: #FFFFFF !important;
-  border-color: #55565A !important;
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.theme-dark input::placeholder,
-.theme-dark textarea::placeholder {
-  color: #888888 !important;
+/* Fix date input and select colors */
+.form-input option {
+  background: #2a1b5e;
+  color: #ffffff;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
