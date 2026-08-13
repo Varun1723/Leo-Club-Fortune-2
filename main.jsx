@@ -322,7 +322,6 @@ const ProjectsView = () => {
               { icon: <Globe size={28} />, title: "Gain Lion Credibility", desc: "There are Lions and Leos in over 200 countries and geographic areas who share your passion for service. Gain the respect that comes with being part of a global organisation known for its contributions to humanity for over 100 years." },
               { icon: <Heart size={28} />, title: "Make New Friends", desc: "Feel a sense of belonging with the other members of your club, as well as the over 1.4 million Lions and Leos around the world. Through the MyLion App, you can connect with other service-minded men and women locally, regionally and internationally." },
               { icon: <BookOpen size={28} />, title: "Show Your Leadership", desc: "As a Leo, you gain access to our online learning management system, where you can sharpen your leadership and organisational skills. You will also have the opportunity to lead within your club and gain valuable, practical experience for use in your personal and professional life." },
-              // { icon: <HandHelping size={28} />, title: "Receive Global Support", desc: "Every Leo and every club are supported by a global network of volunteers, the Lions Clubs International staff, and the Lions Clubs International Foundation (LCIF), which provides grant funding to support the compassionate work of Leos, empowering their service and addressing the needs of their communities both locally and globally." },
             ].map((benefit, idx) => (
               <div key={idx} className="benefit-card glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1">
                 <div className="text-[#EBB700] mb-4">{benefit.icon}</div>
@@ -373,6 +372,7 @@ const ContactView = () => {
       dob: form.dob.value,
       gender: form.gender.value,
       email: form.email.value,
+      phone: form.phone.value, // Added Phone Field
       occupation: form.occupation.value,
       organization: form.organization.value,
       message: form.message.value || null,
@@ -411,7 +411,7 @@ const ContactView = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 animate-slide-up">
           <p className="font-sans text-[#EBB700] font-bold tracking-[0.18em] uppercase text-sm mb-4">Get in touch</p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 text-white">Let's serve together.</h1>
-          <p className="text-lg max-w-2xl text-white/80">Reach out for membership applications, club information, service partnerships, or general inquiries. Fill out the form below and we'll get back to you.</p>
+          <p className="text-lg max-w-2xl text-white/80">Reach out for general inquiries, club information, or service partnerships. Fill out the form below and we'll get back to you.</p>
         </div>
       </section>
 
@@ -443,7 +443,7 @@ const ContactView = () => {
                 <p className="mt-2 text-white/60">Fields marked with an asterisk are required.</p>
               </div>
 
-              {/* Added 'name' attributes to all inputs below */}
+              {/* Name Row */}
               <div className="grid sm:grid-cols-3 gap-5">
                 <div>
                   <label className="block text-sm font-bold mb-2 text-white/90">First Name *</label>
@@ -476,9 +476,16 @@ const ContactView = () => {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-bold mb-2 text-white/90">Email ID *</label>
-                <input required name="email" type="email" className="form-input w-full px-4 py-3 outline-none" placeholder="name@example.com" />
+              {/* Added Contact Number Field Here */}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-bold mb-2 text-white/90">Email ID *</label>
+                  <input required name="email" type="email" className="form-input w-full px-4 py-3 outline-none" placeholder="name@example.com" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold mb-2 text-white/90">Contact Number *</label>
+                  <input required name="phone" type="tel" className="form-input w-full px-4 py-3 outline-none" placeholder="+91" />
+                </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-5">
